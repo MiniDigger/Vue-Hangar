@@ -16,12 +16,12 @@ import me.minidigger.hangar.service.UserService;
 
 @RestController
 @RequestMapping("/api/v1/users")
-public class UsersController {
+public class UserController {
 
     private final UserService userService;
 
     @Autowired
-    public UsersController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
