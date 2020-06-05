@@ -10,12 +10,11 @@
           <p class="modal-card-title">Login</p>
         </header>
         <section class="modal-card-body">
-          <b-field label="Email">
+          <b-field label="Username">
             <b-input
-              ref="email"
-              type="email"
-              :value="email"
-              placeholder="Your email"
+              ref="username"
+              v-model="username"
+              placeholder="Your username"
               required>
             </b-input>
           </b-field>
@@ -24,7 +23,7 @@
             <b-input
               ref="password"
               type="password"
-              :value="password"
+              v-model="password"
               password-reveal
               placeholder="Your password"
               required>
@@ -43,7 +42,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import {mapMutations, mapActions} from 'vuex';
 
 export default {
   name: "Login",
@@ -55,26 +54,26 @@ export default {
   },
   data() {
     return {
-      email: '',
+      username: '',
       password: '',
       rememberMe: false,
       loading: false
     }
   },
   methods: {
-    ...mapMutations({
-      commitLogin: 'user/login'
+    ...mapActions({
+      doLogin: "user/login"
     }),
     login() {
-      if(this.$refs.email.checkHtml5Validity() && this.$refs.password.checkHtml5Validity()) {
-        this.$buefy.toast.open('Logging in... ');
+      if (this.$refs.username.checkHtml5Validity() && this.$refs.password.checkHtml5Validity()) {
         this.loading = true;
-        // simulate network delay
-        setTimeout(() => {
+        this.doLogin({username: this.username, password: this.password}).then(() => {
           this.loading = false;
           this.$emit('close')
-          this.commitLogin({id: "1", name: "MiniDigger"})
-        }, 500);
+        }).catch((err) => {
+          this.$buefy.toast.open('Error! ' + err);
+          this.loading = false;
+        })
       }
     }
   }

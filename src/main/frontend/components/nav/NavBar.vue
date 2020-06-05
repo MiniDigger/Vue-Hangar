@@ -12,7 +12,7 @@
       </template>
 
       <template slot="end" v-if="user">
-        <b-navbar-dropdown :label="user.name" collapsible right>
+        <b-navbar-dropdown :label="user.username" collapsible right>
           <b-navbar-item>
             Option 1
           </b-navbar-item>

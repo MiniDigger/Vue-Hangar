@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @PreAuthorize("hasRole('ROLE_LOGGED_IN')")
-public @interface RequiresLoggin {
+public @interface RequiresLogin {
 
 
 }

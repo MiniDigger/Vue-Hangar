@@ -16,7 +16,7 @@ import java.util.UUID;
 
 import me.minidigger.hangar.model.SpringUser;
 import me.minidigger.hangar.model.User;
-import me.minidigger.hangar.security.RequiresLoggin;
+import me.minidigger.hangar.security.RequiresLogin;
 import me.minidigger.hangar.service.UserService;
 
 @RestController
@@ -31,16 +31,19 @@ public class UserController {
     }
 
     @GetMapping("/")
+    @RequiresLogin
     public Iterable<User> getAll() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
+    @RequiresLogin
     public Optional<User> get(@PathVariable UUID id) {
         return userService.getUserById(id);
     }
 
     @DeleteMapping("/{id}")
+    @RequiresLogin
     public void deleteUser(@PathVariable UUID id) {
         userService.deleteUserById(id);
     }
@@ -65,12 +68,13 @@ public class UserController {
     }
 
     @GetMapping("/current")
-    @RequiresLoggin
+    @RequiresLogin
     public User getCurrent(@AuthenticationPrincipal final SpringUser user) {
         return user.getUser();
     }
 
     @GetMapping("/logout")
+    @RequiresLogin
     public boolean logout(@AuthenticationPrincipal final SpringUser user) {
         userService.logout(user.getUser());
         return true;

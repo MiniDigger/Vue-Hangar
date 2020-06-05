@@ -42,12 +42,14 @@ export default {
     'nuxt-buefy',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    proxy: true
   },
   /*
   ** Build configuration
@@ -58,5 +60,8 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  proxy: {
+    '/api': 'http://localhost:8080'
   }
 }
