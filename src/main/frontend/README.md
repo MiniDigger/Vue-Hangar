@@ -1,26 +1,22 @@
-# Hangar (hangar)
+# hangar
 
-Launcher your Paper Planes/Plugins from this awesome hangar
+> Launch your Paper Planes/Plugins from this awesome hangar!
 
-## Install the dependencies
+## Build Setup
+
 ```bash
-yarn
+# install dependencies
+$ yarn install
+
+# serve with hot reload at localhost:3000
+$ yarn dev
+
+# build for production and launch server
+$ yarn build
+$ yarn start
+
+# generate static project
+$ yarn generate
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
-
-### Lint the files
-```bash
-yarn run lint
-```
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

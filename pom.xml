@@ -12,7 +12,7 @@
     <artifactId>hangar</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Hangar</name>
-    <description>Launch your Paper Planes/Plugins from this awesome hangar</description>
+    <description>Launch your Paper Planes/Plugins from this awesome hangar!</description>
 
     <properties>
         <java.version>11</java.version>

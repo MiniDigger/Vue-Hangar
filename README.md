@@ -1,5 +1,5 @@
 # Hanger
-**The** place to land your paper ~~planes~~ plugins in!
+Launch your Paper Planes/Plugins from this awesome hangar!
 
 ## What's this?
 

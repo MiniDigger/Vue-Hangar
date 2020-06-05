@@ -1,35 +1,23 @@
 {
   "name": "hangar",
-  "version": "0.0.1",
-  "description": "Launcher your Paper Planes/Plugins from this awesome hangar",
-  "productName": "Hangar",
-  "cordovaId": "me.minidigger.hangar",
-  "capacitorId": "",
-  "author": "MiniDigger <admin@minidigger.me>",
+  "version": "1.0.0",
+  "description": "Launch your Paper Planes/Plugins from this awesome hangar!",
+  "author": "MiniDigger",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.vue src",
-    "test": "echo \"No test specified\" && exit 0"
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
   },
   "dependencies": {
-    "@quasar/extras": "1.8.2",
-    "axios": "0.19.2",
-    "quasar": "1.12.3"
+    "nuxt": "^2.0.0",
+    "nuxt-buefy": "^0.3.2",
+    "@nuxtjs/axios": "^5.3.6"
   },
   "devDependencies": {
-    "@quasar/app": "1.9.6",
-    "@vue/eslint-config-prettier": "6.0.0",
-    "babel-eslint": "10.1.0",
-    "eslint": "7.1.0",
-    "eslint-loader": "4.0.2",
-    "eslint-plugin-vue": "6.2.2"
-  },
-  "engines": {
-    "node": ">= 10.18.1",
-    "npm": ">= 6.13.4",
-    "yarn": ">= 1.21.1"
-  },
-  "browserslist": [
-    "last 1 version, not dead, ie >= 11"
-  ]
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1"
+  }
 }
