@@ -1,52 +1,55 @@
 <template>
   <div>
-    <nav
-      class="navbar header has-shadow is-primary"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <div class="navbar-brand">
-        <a
-          class="navbar-item"
-          href="/"
-        >
+    <b-navbar type="is-dark">
+      <template slot="brand">
+        <b-navbar-item tag="router-link" :to="{ path: '/' }">
           <img
-            src="~assets/buefy.png"
-            alt="Buefy"
-            height="28"
+            src="~assets/paper-logo.svg"
+            alt="Hangar"
           >
-        </a>
+          - Hangar
+        </b-navbar-item>
+      </template>
 
-        <div class="navbar-burger">
-          <span />
-          <span />
-          <span />
-        </div>
-      </div>
-    </nav>
+      <template slot="end">
+        <b-navbar-dropdown label="User" collapsible right>
+          <b-navbar-item href="#">
+            Option 1
+          </b-navbar-item>
+          <b-navbar-item href="#">
+            Option 2
+          </b-navbar-item>
+        </b-navbar-dropdown>
+
+        <b-navbar-dropdown arrowless collapsible right>
+          <template slot="label">
+            <b-icon icon="message-text" />
+          </template>
+          <b-navbar-item href="#">
+            Message 1
+          </b-navbar-item>
+          <b-navbar-item href="#">
+            Message 2
+          </b-navbar-item>
+        </b-navbar-dropdown>
+
+        <b-navbar-dropdown arrowless collapsible right>
+          <template slot="label">
+            <b-icon icon="bell" />
+          </template>
+          <b-navbar-item href="#">
+            Alert 1
+          </b-navbar-item>
+          <b-navbar-item href="#">
+            Alert 2
+          </b-navbar-item>
+        </b-navbar-dropdown>
+      </template>
+    </b-navbar>
 
     <section class="main-content columns">
-      <aside class="column is-2 section">
-        <p class="menu-label is-hidden-touch">
-          General
-        </p>
-        <ul class="menu-list">
-          <li
-            v-for="(item, key) of items"
-            :key="key"
-          >
-            <nuxt-link
-              :to="item.to"
-              exact-active-class="is-active"
-            >
-              <b-icon :icon="item.icon" /> {{ item.title }}
-            </nuxt-link>
-          </li>
-        </ul>
-      </aside>
-
-      <div class="container column is-10">
-        <nuxt />
+      <div class="container column is-12">
+        <nuxt/>
       </div>
     </section>
   </div>
@@ -54,21 +57,27 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       items: [
         {
           title: 'Home',
           icon: 'home',
-          to: { name: 'index' }
+          to: {name: 'index'}
         },
         {
           title: 'Inspire',
           icon: 'lightbulb',
-          to: { name: 'inspire' }
+          to: {name: 'inspire'}
         }
       ]
     }
   }
 }
 </script>
+
+<style>
+.navbar-brand img {
+  height: 1.75rem;
+}
+</style>
