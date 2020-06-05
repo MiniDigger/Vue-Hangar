@@ -3,14 +3,15 @@ package me.minidigger.hangar.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import java.util.Collections;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
-import springfox.documentation.service.BasicAuth;
 import springfox.documentation.service.Contact;
 import springfox.documentation.service.SecurityReference;
 import springfox.documentation.service.SecurityScheme;
@@ -33,7 +34,8 @@ public class SpringFoxConfig {
                 .build()
                 .apiInfo(apiInfo())
                 .securityContexts(Collections.singletonList(securityContext()))
-                .securitySchemes(Collections.singletonList(basicAuthScheme()));
+                .securitySchemes(Collections.singletonList(apiKey()))
+                .ignoredParameterTypes(AuthenticationPrincipal.class);
     }
 
     private SecurityContext securityContext() {
@@ -43,12 +45,12 @@ public class SpringFoxConfig {
                 .build();
     }
 
-    private SecurityScheme basicAuthScheme() {
-        return new BasicAuth("basicAuth");
+    private SecurityScheme apiKey() {
+        return new ApiKey("JWT", "Authorization", "header");
     }
 
     private SecurityReference basicAuthReference() {
-        return new SecurityReference("basicAuth", new AuthorizationScope[0]);
+        return new SecurityReference("JWT", new AuthorizationScope[0]);
     }
 
     private ApiInfo apiInfo() {

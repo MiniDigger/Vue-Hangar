@@ -2,13 +2,19 @@ package me.minidigger.hangar.model;
 
 import com.google.common.base.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.UUID;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -25,17 +31,21 @@ public class User {
     @Column(unique = true)
     private String username;
     private String email;
+    @JsonIgnore
+    private String password;
 
     @OneToMany
+    @JsonIgnore
     private List<Resource> watchedResources;
 
     protected User() {
         // JPA
     }
 
-    public User(String username, String email) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
+        this.password = password;
     }
 
     public UUID getId() {
@@ -46,12 +56,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getEmail() {
@@ -68,6 +78,14 @@ public class User {
 
     public void setWatchedResources(List<Resource> watchedResources) {
         this.watchedResources = watchedResources;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
