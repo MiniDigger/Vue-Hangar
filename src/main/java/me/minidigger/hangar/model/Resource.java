@@ -1,18 +1,13 @@
 package me.minidigger.hangar.model;
 
-import com.google.common.base.Objects;
-
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
-import java.util.List;
-import java.util.StringJoiner;
-import java.util.UUID;
+import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Resource {
@@ -29,12 +24,14 @@ public class Resource {
     private String name;
     private String title;
     private String description;
-    @OneToOne
-    private User author;
+    @OneToMany
+    private Map<User, ResourceRole> authors;
     @OneToMany
     private List<Tag> tags;
     @OneToMany
     private List<ResourceVersion> versions;
+    @OneToMany
+    private List<User> stars;
 
     protected Resource() {
         // JPA
@@ -72,12 +69,12 @@ public class Resource {
         this.description = description;
     }
 
-    public User getAuthor() {
-        return author;
+    public Map<User, ResourceRole> getAuthors() {
+        return authors;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setAuthors(Map<User, ResourceRole> authors) {
+        this.authors = authors;
     }
 
     public List<Tag> getTags() {
@@ -96,35 +93,45 @@ public class Resource {
         this.versions = versions;
     }
 
+    public List<User> getStars() {
+        return stars;
+    }
+
+    public void setStars(List<User> stars) {
+        this.stars = stars;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Resource resource = (Resource) o;
-        return Objects.equal(id, resource.id) &&
-               Objects.equal(name, resource.name) &&
-               Objects.equal(title, resource.title) &&
-               Objects.equal(description, resource.description) &&
-               Objects.equal(author, resource.author) &&
-               Objects.equal(tags, resource.tags) &&
-               Objects.equal(versions, resource.versions);
+        return java.util.Objects.equals(id, resource.id) &&
+                java.util.Objects.equals(name, resource.name) &&
+                java.util.Objects.equals(title, resource.title) &&
+                java.util.Objects.equals(description, resource.description) &&
+                java.util.Objects.equals(authors, resource.authors) &&
+                java.util.Objects.equals(tags, resource.tags) &&
+                java.util.Objects.equals(versions, resource.versions) &&
+                java.util.Objects.equals(stars, resource.stars);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, name, title, description, author, tags, versions);
+        return Objects.hash(id, name, title, description, authors, tags, versions, stars);
     }
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", Resource.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("name='" + name + "'")
-                .add("title='" + title + "'")
-                .add("description='" + description + "'")
-                .add("author=" + author)
-                .add("tags=" + tags)
-                .add("versions=" + versions)
-                .toString();
+        return "Resource{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", authors=" + authors +
+                ", tags=" + tags +
+                ", versions=" + versions +
+                ", stars=" + stars +
+                '}';
     }
 }
