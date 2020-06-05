@@ -1,9 +1,9 @@
 <template>
   <div class="tile is-child box">
     <p class="title">
-      <a :href="'/resources/' + resource.id">
+      <nuxt-link :to="'/resources/' + resource.id">
         {{resource.name}}
-      </a>
+      </nuxt-link>
     </p>
   </div>
 </template>

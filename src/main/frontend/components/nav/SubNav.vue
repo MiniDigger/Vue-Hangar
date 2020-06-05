@@ -1,13 +1,13 @@
 <template>
   <nav class="level" id="subnav">
     <p class="level-item has-text-centered">
-      <a class="link is-info" href="/">Home</a>
+      <nuxt-link class="link is-info" to="/">Home</nuxt-link>
     </p>
     <p class="level-item has-text-centered">
       <a class="link is-info">Forums</a>
     </p>
     <p class="level-item has-text-centered">
-      <a class="link is-info" href="/resources">Resources</a>
+      <nuxt-link class="link is-info" to="/resources">Resources</nuxt-link>
     </p>
     <p class="level-item has-text-centered">
       <a class="link is-info">Your Resources</a>
