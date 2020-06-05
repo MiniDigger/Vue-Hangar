@@ -5,12 +5,10 @@ import com.google.common.base.Objects;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
+import java.util.List;
 import java.util.StringJoiner;
 import java.util.UUID;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -27,6 +25,9 @@ public class User {
     @Column(unique = true)
     private String username;
     private String email;
+
+    @OneToMany
+    private List<Resource> watchedResources;
 
     protected User() {
         // JPA
@@ -59,6 +60,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Resource> getWatchedResources() {
+        return watchedResources;
+    }
+
+    public void setWatchedResources(List<Resource> watchedResources) {
+        this.watchedResources = watchedResources;
     }
 
     @Override

@@ -23,11 +23,13 @@ public class HangarApplication {
     public CommandLineRunner loadInitialData(TagRepository tagRepository, TagTypeRepository tagTypeRepository) {
         return (args) -> {
             // tag types
-            TagType licence = new TagType("Licence", "📜");
-            TagType supportedMCVersion = new TagType("Supported MC Version", "🎮");
-            TagType nativeMCVersion = new TagType("Native MC Version", "🎮");
-            TagType sourceType = new TagType("Source distribution Type", "ℹ");
-            tagTypeRepository.saveAll(List.of(licence, supportedMCVersion, nativeMCVersion, sourceType));
+            TagType licence = new TagType("Licence", "📜", false);
+            TagType supportedMCVersion = new TagType("Supported MC Version", "🎮", true);
+            TagType nativeMCVersion = new TagType("Native MC Version", "🎮", false);
+            TagType sourceType = new TagType("Source distribution Type", "ℹ", false);
+            TagType resourceType = new TagType("Resource Type", "", false);
+            TagType resourceCategory = new TagType("Resource Category", "", true);
+            tagTypeRepository.saveAll(List.of(licence, supportedMCVersion, nativeMCVersion, sourceType, resourceType, resourceCategory));
 
             // licence tags
             Tag mit = new Tag("MIT", licence);
@@ -48,6 +50,27 @@ public class HangarApplication {
             Tag sharedSource = new Tag("Shared source", sourceType);
             Tag openSource = new Tag("Open source", sourceType);
             tagRepository.saveAll(List.of(obfuscated, closedSource, sharedSource, openSource));
+
+            // general resource type tags
+            Tag paper = new Tag("Paper", resourceType);
+            Tag waterfall = new Tag("Waterfall", resourceType);
+            Tag universal = new Tag("Universal", resourceType);
+            Tag standalone = new Tag("Standalone", resourceType);
+            Tag web = new Tag("Web", resourceType);
+            tagRepository.saveAll(List.of(paper, waterfall, universal, standalone, web));
+
+            // specific resource category tags
+            Tag chat = new Tag("Chat", resourceCategory);
+            Tag gamemodes = new Tag("Gamemodes", resourceCategory);
+            Tag economy = new Tag("Economy", resourceCategory);
+            Tag moderation = new Tag("Moderation", resourceCategory);
+            Tag mechanics = new Tag("Mechanics", resourceCategory);
+            Tag worldManagement = new Tag("World Management", resourceCategory);
+            Tag fun = new Tag("Fun", resourceCategory);
+            Tag misc = new Tag("Miscellaneous", resourceCategory);
+            Tag utilities = new Tag("Utilities", resourceCategory);
+            Tag libraries = new Tag("Libraries & APIs", resourceCategory);
+            tagRepository.saveAll(List.of(chat, gamemodes, economy, moderation, mechanics, worldManagement, fun, misc, utilities, libraries));
         };
     }
 }

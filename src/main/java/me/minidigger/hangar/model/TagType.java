@@ -25,14 +25,16 @@ public class TagType {
 
     private String displayName;
     private String icon;
+    private boolean repeatable;
 
     protected TagType() {
         // JPA
     }
 
-    public TagType(String displayName, String icon) {
+    public TagType(String displayName, String icon, boolean repeatable) {
         this.displayName = displayName;
         this.icon = icon;
+        this.repeatable = repeatable;
     }
 
     public UUID getId() {
@@ -57,6 +59,14 @@ public class TagType {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public boolean isRepeatable() {
+        return repeatable;
+    }
+
+    public void setRepeatable(boolean repeatable) {
+        this.repeatable = repeatable;
     }
 
     @Override
