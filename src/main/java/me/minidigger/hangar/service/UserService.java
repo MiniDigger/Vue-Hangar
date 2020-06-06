@@ -43,10 +43,6 @@ public class UserService {
         return repository.save(new User(username, email, passwordEncoder.encode(password)));
     }
 
-    public void deleteUserById(UUID id) {
-        repository.deleteById(id);
-    }
-
     public Optional<SpringUser> findByToken(String token) {
         try {
             DecodedJWT jwt = tokenService.verify(token);
@@ -77,5 +73,9 @@ public class UserService {
 
     private SpringUser getSpringUser(User user) {
         return new SpringUser(user);
+    }
+
+    public void deleteUserById(UUID id) {
+        repository.deleteById(id);
     }
 }
