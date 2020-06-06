@@ -10,7 +10,11 @@ import org.hibernate.annotations.Type;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.UUID;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -74,6 +78,14 @@ public class User {
 
     public void setWatchedResources(List<Resource> watchedResources) {
         this.watchedResources = watchedResources;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
