@@ -15,10 +15,20 @@
 
       <div class="tile is-4 is-vertical is-parent">
         <div class="tile is-child box">
-          <p class="title">One</p>
+          <p class="title">Resource Tools</p>
         </div>
         <div class="tile is-child box">
-          <p class="title">Two</p>
+          <p class="title">Resource Information</p>
+        </div>
+        <div class="tile is-child box">
+          <p class="title">Latest Version</p>
+        </div>
+        <div class="tile is-child box">
+          <p class="title">More Resources</p>
+        </div>
+        <div class="buttons">
+          <b-button class="button is-primary">Discuss Resource</b-button>
+          <b-button class="button is-danger">Delete Resource</b-button>
         </div>
       </div>
     </div>

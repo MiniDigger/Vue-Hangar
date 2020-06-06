@@ -34,10 +34,10 @@ export default {
   computed: {
     currentResources() {
       return [
-        {id: 1, name: "Test1"},
-        {id: 2, name: "Test2"},
-        {id: 3, name: "Test3"},
-        {id: 4, name: "Test4"},
+        {id: 1, name: "Test1", version: "1.0.0", authors: "ExampleUser1"},
+        {id: 2, name: "Test2", version: "1.0.0", authors: "ExampleUser1"},
+        {id: 3, name: "Test3", version: "1.0.0", authors: "ExampleUser1"},
+        {id: 4, name: "Test4", version: "1.0.0", authors: "ExampleUser1"},
       ]
     }
   },

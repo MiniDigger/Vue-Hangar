@@ -4,7 +4,7 @@
       <div class="tile">
         <p class="title">Resources</p>
       </div>
-      <div class="tile">
+      <div class="tile" id="filter">
         <b-field label="Filter by:" label-position="on-border">
           <b-taginput
             v-model="tags"
@@ -38,6 +38,11 @@
           </b-taginput>
         </b-field>
       </div>
+      <div class="tile">
+        <nuxt-link :to="'/resources/add'">
+          <b-button class="button is-primary">Add Resource</b-button>
+        </nuxt-link>
+      </div>
     </div>
 
     <div class="tile is-parent">
@@ -49,10 +54,13 @@
 
       <div class="tile is-4 is-vertical is-parent">
         <div class="tile is-child box">
-          <p class="title">Types</p>
+          <p class="title">Categories</p>
         </div>
         <div class="tile is-child box">
-          <p class="title">Two</p>
+          <p class="title">Top Resources</p>
+        </div>
+        <div class="tile is-child box">
+          <p class="title">Most Resources</p>
         </div>
       </div>
     </div>
@@ -90,3 +98,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .title {
+    margin-bottom: 1%;
+  }
+  #filter {
+    margin-bottom: 1%;
+  }
+</style>
