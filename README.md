@@ -1,6 +1,7 @@
 # Hanger
 Launch your Paper Planes/Plugins from this awesome hangar!
 
+Discuss this on discord! https://discord.gg/sUKmcsG
 ## What's this?
 
 This is the repository of hanger, a plugin repository for paper plugins. 
