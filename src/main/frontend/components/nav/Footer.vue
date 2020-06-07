@@ -1,19 +1,15 @@
 <template>
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p>
-        Made with <b-icon icon="heart"/> by these Contributors!
-      </p>
+  <footer>
+    <div class="text-center">
+      <p>Made with <fa :icon="['fas', 'heart']" /> by these Contributors!</p>
     </div>
   </footer>
 </template>
 
 <script>
 export default {
-  name: "Footer"
+  name: 'Footer',
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

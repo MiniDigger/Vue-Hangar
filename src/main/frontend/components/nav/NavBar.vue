@@ -1,100 +1,67 @@
 <template>
-  <div>
-    <b-navbar type="is-dark" fixed-top>
-      <template slot="brand">
-        <b-navbar-item tag="nuxt-link" :to="{ path: '/' }">
-          <img
-            src="~assets/paper-logo.svg"
-            alt="Hangar"
-          >
-          Hangar
-        </b-navbar-item>
-      </template>
+  <b-container>
+    <b-navbar toggleable="lg" variant="transparent" type="light">
+      <b-navbar-brand to="/">Hangar</b-navbar-brand>
 
-      <template slot="end" v-if="user">
-        <b-navbar-dropdown :label="user.username" collapsible right>
-          <b-navbar-item>
-            Option 1
-          </b-navbar-item>
-          <b-navbar-item @click="logout">
-            Logout
-          </b-navbar-item>
-        </b-navbar-dropdown>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-        <b-navbar-dropdown arrowless collapsible right>
-          <template slot="label">
-            <b-icon icon="message-text"/>
-          </template>
-          <b-navbar-item>
-            Message 1
-          </b-navbar-item>
-          <b-navbar-item>
-            Message 2
-          </b-navbar-item>
-        </b-navbar-dropdown>
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav class="mr-auto">
+          <b-nav-item>Forums</b-nav-item>
+          <b-nav-item-dropdown text="Resources">
+            <b-dropdown-item>All Resources</b-dropdown-item>
+            <b-dropdown-item>New Resources</b-dropdown-item>
+            <!-- when authed
+            <b-dropdown-item>Your Resources</b-dropdown-item>
+            <b-dropdown-item>Watched Resources</b-dropdown-item>
+            <b-dropdown-item>Watched Categories</b-dropdown-item>
+            -->
+          </b-nav-item-dropdown>
+        </b-navbar-nav>
 
-        <b-navbar-dropdown arrowless collapsible right>
-          <template slot="label">
-            <b-icon icon="bell"/>
-          </template>
-          <b-navbar-item>
-            Alert 1
-          </b-navbar-item>
-          <b-navbar-item>
-            Alert 2
-          </b-navbar-item>
-        </b-navbar-dropdown>
-      </template>
+        <b-navbar-nav class="mx-auto">
+          <b-nav-form class="search">
+            <b-form-input size="sm" placeholder="Search for a resource..." />
+          </b-nav-form>
+        </b-navbar-nav>
 
-      <template slot="end" v-else>
-        <b-navbar-item tag="div">
-          <div class="buttons">
-            <nuxt-link class="button is-primary" to="register">
-              <strong>Sign up</strong>
-            </nuxt-link>
-            <a class="button is-light" @click="showLogin = true">
-              Log in
-            </a>
-          </div>
-        </b-navbar-item>
-      </template>
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item-dropdown>
+            <template #button-content>
+              Account
+              <!-- show username when authed -->
+            </template>
+            <b-dropdown-item href="#">Log In</b-dropdown-item>
+            <b-dropdown-item href="#">Sign Up</b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-navbar-nav>
+      </b-collapse>
     </b-navbar>
-
-    <Login :active="showLogin" @close="showLogin = false"/>
-  </div>
+  </b-container>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
-import Login from "../modal/Login";
-
 export default {
-  name: "NavBar",
-  components: {
-    Login
-  },
-  methods: {
-    ...mapMutations({
-      commitLogout: 'user/logout'
-    }),
-    logout() {
-      this.commitLogout();
-      // TODO clear cookie and shit
+  name: 'NavBar',
+  data() {
+    return {
+      showLogin: false,
     }
   },
   computed: {
     user() {
       return this.$store.state.user.user
-    }
+    },
   },
-  data() {
-    return {
-      showLogin: false
-    }
-  }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.search {
+  width: 400px;
 
+  input {
+    width: 400px;
+  }
+}
 </style>

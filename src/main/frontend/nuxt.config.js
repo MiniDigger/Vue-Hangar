@@ -20,30 +20,62 @@ export default {
   */
   loading: { color: '#fff' },
   /*
+   ** Style Resources
+   ** Global CSS, but puts vars into global context
+   */
+  styleResources: {
+    scss: [
+      '~/assets/style/colors.scss'
+    ]
+  },
+  /*
   ** Global CSS
   */
   css: [
+    '~/assets/style/global.scss'
   ],
+
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-  ],
+  plugins: [],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    // Doc: https://github.com/nuxt-community/eslint-module
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/style-resources'
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://buefy.github.io/#/documentation
-    'nuxt-buefy',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
+    // Doc: https://bootstrap-vue.org/docs
+    'bootstrap-vue/nuxt',
+    ['nuxt-fontawesome', {
+      component: 'fa',
+      imports: [
+        {
+          set: '@fortawesome/free-solid-svg-icons',
+          icons: ['fas']
+        }
+      ]
+    }]
   ],
+  /*
+   ** Bootstrap Vue configuration
+   ** We disable automatic injection so that we
+   ** can inject it in our global SCSS file. This
+   ** allows us to create our own color scheme vars.
+   */
+  bootstrapVue: {
+    bootstrapCSS: false,
+    bootstrapVueCSS: false
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
@@ -59,6 +91,23 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      // apply development sourcemap for debug
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'eval-source-map' : 'inline-source-map'
+      }
+
+      // auto format code during dev session
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/,
+          options: {
+            fix: true
+          }
+        })
+      }
     }
   },
   proxy: {

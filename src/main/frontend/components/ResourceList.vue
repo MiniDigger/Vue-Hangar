@@ -1,9 +1,12 @@
 <template>
   <div class="tile is-parent is-vertical">
-    <ResourceListEntry v-for="resource in currentResources" :key="resource.id" :resource="resource" />
+    <ResourceListEntry
+      v-for="resource in currentResources"
+      :key="resource.id"
+      :resource="resource"
+    />
 
     <b-pagination
-      @change="switchPage"
       :total="total"
       :current.sync="current"
       :per-page="perPage"
@@ -11,18 +14,20 @@
       aria-next-label="Next page"
       aria-previous-label="Previous page"
       aria-page-label="Page"
-      aria-current-label="Current page">
+      aria-current-label="Current page"
+      @change="switchPage"
+    >
     </b-pagination>
   </div>
 </template>
 
 <script>
-import ResourceListEntry from "./ResourceListEntry";
+import ResourceListEntry from './ResourceListEntry'
 
 export default {
-  name: "ResourceList",
+  name: 'ResourceList',
   components: {
-    ResourceListEntry
+    ResourceListEntry,
   },
   data() {
     return {
@@ -34,21 +39,19 @@ export default {
   computed: {
     currentResources() {
       return [
-        {id: 1, name: "Test1", version: "1.0.0", authors: "ExampleUser1"},
-        {id: 2, name: "Test2", version: "1.0.0", authors: "ExampleUser1"},
-        {id: 3, name: "Test3", version: "1.0.0", authors: "ExampleUser1"},
-        {id: 4, name: "Test4", version: "1.0.0", authors: "ExampleUser1"},
+        { id: 1, name: 'Test1', version: '1.0.0', authors: 'ExampleUser1' },
+        { id: 2, name: 'Test2', version: '1.0.0', authors: 'ExampleUser1' },
+        { id: 3, name: 'Test3', version: '1.0.0', authors: 'ExampleUser1' },
+        { id: 4, name: 'Test4', version: '1.0.0', authors: 'ExampleUser1' },
       ]
-    }
+    },
   },
   methods: {
     switchPage(newPage) {
       this.$buefy.toast.open('Open Page ' + newPage)
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
