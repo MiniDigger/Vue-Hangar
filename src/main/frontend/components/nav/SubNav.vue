@@ -4,7 +4,7 @@
       <nuxt-link class="link is-info" to="/">Home</nuxt-link>
     </p>
     <p class="level-item has-text-centered">
-      <a class="link is-info">Forums</a>
+      <a class="link is-info" href="https://papermc.io/forums/">Forums</a>
     </p>
     <p class="level-item has-text-centered">
       <nuxt-link class="link is-info" to="/resources">Resources</nuxt-link>

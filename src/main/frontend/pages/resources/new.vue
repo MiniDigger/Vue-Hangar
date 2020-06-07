@@ -57,14 +57,49 @@
     </b-field>
 
     <b-field label="Content">
-      <b-input
+      <b-input 
+        type="textarea"
         ref="content"
         :value="content"/>
     </b-field>
 
     <div class="buttons">
       <b-button class="button" type="button" @click="back">Back</b-button>
-      <b-button class="button is-primary" :loading="loading">Add Resource</b-button>
+      <b-button class="button is-primary" @click.prevent="createResource" :loading="loading">New Resource</b-button>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "new",
+  data() {
+    return {
+      name: null,
+      version: null,
+      description: null,
+      content: null,
+      loading: false,
+    }
+  },
+  methods: {
+    back() {
+      this.$router.go(-1);
+    },
+    createResource() {
+      this.$buefy.toast.open('Creating resource..');
+      this.loading = true;
+      // simulate network delay
+      setTimeout(() => {
+        this.loading = false;
+        this.$emit('close')
+        // do something! createResource({})
+      }, 500);
+    },
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

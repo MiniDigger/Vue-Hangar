@@ -7,7 +7,7 @@
             src="~assets/paper-logo.svg"
             alt="Hangar"
           >
-          - Hangar
+          Hangar
         </b-navbar-item>
       </template>
 

@@ -39,8 +39,8 @@
         </b-field>
       </div>
       <div class="tile">
-        <nuxt-link :to="'/resources/add'">
-          <b-button class="button is-primary">Add Resource</b-button>
+        <nuxt-link :to="'/resources/new'">
+          <b-button class="button is-primary">New Resource</b-button>
         </nuxt-link>
       </div>
     </div>
