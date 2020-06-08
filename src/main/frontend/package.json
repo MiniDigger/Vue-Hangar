@@ -18,7 +18,8 @@
     "bootstrap": "4.5.0",
     "bootstrap-vue": "2.15.0",
     "nuxt": "2.12.2",
-    "nuxt-fontawesome": "0.4.0"
+    "nuxt-fontawesome": "0.4.0",
+    "vuelidate": "0.7.5"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "3.0.0",

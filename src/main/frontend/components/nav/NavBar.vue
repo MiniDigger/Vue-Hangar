@@ -25,24 +25,43 @@
           </b-nav-form>
         </b-navbar-nav>
 
-        <b-navbar-nav class="ml-auto">
+        <!-- anon nav -->
+        <b-navbar-nav v-if="!user" class="ml-auto">
           <b-nav-item-dropdown>
             <template #button-content>
               Account
-              <!-- show username when authed -->
             </template>
-            <b-dropdown-item href="#">Log In</b-dropdown-item>
+            <b-dropdown-item v-b-modal.login-modal>Log In</b-dropdown-item>
             <b-dropdown-item href="#">Sign Up</b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-navbar-nav>
+
+        <!-- logged in nav -->
+        <b-navbar-nav v-else class="ml-auto">
+          <b-nav-item-dropdown>
+            <template #button-content>
+              {{ user.username }}
+            </template>
+            <b-dropdown-item href="#">Settings</b-dropdown-item>
+            <b-dropdown-item @click="logout">Log out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
+
+    <Login />
   </b-container>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+import Login from '../modal/Login'
+
 export default {
   name: 'NavBar',
+  components: {
+    Login,
+  },
   data() {
     return {
       showLogin: false,
@@ -51,6 +70,14 @@ export default {
   computed: {
     user() {
       return this.$store.state.user.user
+    },
+  },
+  methods: {
+    ...mapMutations({
+      commitLogout: 'user/logout',
+    }),
+    logout() {
+      this.commitLogout()
     },
   },
 }

@@ -1,73 +1,69 @@
 <template>
   <b-modal
-    :active.sync="active"
-    has-modal-card
-    trap-focus
-    aria-role="dialog"
-    aria-modal
+    id="login-modal"
+    title="Login"
+    ok-title="Login"
+    @ok="login"
+    @cancel="cancel"
+    @show="cancel"
+    @shown="$refs.username.focus()"
   >
-    <form action="">
-      <div class="modal-card" style="width: auto;">
-        <header class="modal-card-head">
-          <p class="modal-card-title">Login</p>
-        </header>
-        <section class="modal-card-body">
-          <b-field label="Username">
-            <b-input
-              ref="username"
-              v-model="username"
-              placeholder="Your username"
-              required
-            >
-            </b-input>
-          </b-field>
+    <b-overlay :show="loading" rounded="sm">
+      <b-form-group label="Username">
+        <b-form-input
+          ref="username"
+          v-model="$v.form.username.$model"
+          :state="validateState('username')"
+          placeholder="Your username"
+        />
+        <b-form-invalid-feedback id="input-1-live-feedback"
+          >Please enter your username
+        </b-form-invalid-feedback>
+      </b-form-group>
 
-          <b-field label="Password">
-            <b-input
-              ref="password"
-              v-model="password"
-              type="password"
-              password-reveal
-              placeholder="Your password"
-              required
-            >
-            </b-input>
-          </b-field>
+      <b-form-group label="Password">
+        <b-form-input
+          v-model="$v.form.password.$model"
+          :state="validateState('password')"
+          type="password"
+          placeholder="Your password"
+        />
+        <b-form-invalid-feedback id="input-2-live-feedback"
+          >Please enter your password
+        </b-form-invalid-feedback>
+      </b-form-group>
 
-          <b-checkbox :value="rememberMe">Remember me</b-checkbox>
-        </section>
-        <footer class="modal-card-foot">
-          <b-button class="button" type="button" @click="$emit('close')"
-            >Close</b-button
-          >
-          <b-button
-            class="button is-primary"
-            :loading="loading"
-            @click.prevent="login"
-            >Login</b-button
-          >
-        </footer>
-      </div>
-    </form>
+      <b-form-checkbox v-model="form.rememberMe">Remember me</b-form-checkbox>
+
+      <b-alert
+        v-model="showError"
+        class="mt-3"
+        dismissible
+        @dismissed="dismissed"
+      >
+        {{ errorMsg }}
+      </b-alert>
+    </b-overlay>
   </b-modal>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
   name: 'Login',
-  props: {
-    active: {
-      type: Boolean,
-      required: true,
-    },
-  },
+  mixins: [validationMixin],
   data() {
     return {
-      username: '',
-      password: '',
-      rememberMe: false,
+      form: {
+        username: null,
+        password: null,
+        rememberMe: false, // TODO support remember me
+      },
+      errorMsg: null,
+      showError: false,
       loading: false,
     }
   },
@@ -75,22 +71,57 @@ export default {
     ...mapActions({
       doLogin: 'user/login',
     }),
-    login() {
-      if (
-        this.$refs.username.checkHtml5Validity() &&
-        this.$refs.password.checkHtml5Validity()
-      ) {
-        this.loading = true
-        this.doLogin({ username: this.username, password: this.password })
-          .then(() => {
-            this.loading = false
-            this.$emit('close')
-          })
-          .catch((err) => {
-            this.$buefy.toast.open('Error! ' + err)
-            this.loading = false
-          })
+    login(e) {
+      this.$v.form.$touch()
+      e.preventDefault() // dont close
+      if (this.$v.form.$anyError) {
+        return
       }
+
+      this.loading = true
+      this.doLogin({
+        username: this.form.username,
+        password: this.form.password,
+      })
+        .then(() => {
+          this.loading = false
+          this.$bvModal.hide('login-modal')
+        })
+        .catch((err) => {
+          this.showError = true
+          this.errorMsg = err
+          this.loading = false
+        })
+    },
+    clear() {
+      this.form = {
+        username: null,
+        password: null,
+        rememberMe: false,
+      }
+      this.loading = false
+      this.showError = false
+      this.errorMsg = null
+
+      this.$v.form.$reset()
+    },
+    cancel() {
+      this.clear()
+      this.$bvModal.hide('login-modal')
+    },
+    validateState(name) {
+      const { $dirty, $error } = this.$v.form[name]
+      return $dirty ? !$error : null
+    },
+  },
+  validations: {
+    form: {
+      username: {
+        required,
+      },
+      password: {
+        required,
+      },
     },
   },
 }
