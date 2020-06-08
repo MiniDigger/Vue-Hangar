@@ -32,7 +32,7 @@
               Account
             </template>
             <b-dropdown-item v-b-modal.login-modal>Log In</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Up</b-dropdown-item>
+            <b-dropdown-item to="/register">Sign Up</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
 

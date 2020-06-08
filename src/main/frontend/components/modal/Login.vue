@@ -16,8 +16,8 @@
           :state="validateState('username')"
           placeholder="Your username"
         />
-        <b-form-invalid-feedback id="input-1-live-feedback"
-          >Please enter your username
+        <b-form-invalid-feedback>
+          Please enter your username
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -28,8 +28,8 @@
           type="password"
           placeholder="Your password"
         />
-        <b-form-invalid-feedback id="input-2-live-feedback"
-          >Please enter your password
+        <b-form-invalid-feedback>
+          Please enter your password
         </b-form-invalid-feedback>
       </b-form-group>
 

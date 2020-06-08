@@ -1,107 +1,148 @@
 <template>
-  <div class="container">
-    <h1 class="title">Register</h1>
-    <b-field label="Email">
-      <b-input ref="email" type="email" :value="email" maxlength="30" />
-    </b-field>
+  <b-form @submit.prevent="onSubmit" @reset="onReset">
+    <b-card>
+      <b-card-header>
+        Register
+      </b-card-header>
+      <b-card-body>
+        <b-form-group
+          label="Email address:"
+          label-for="email"
+          description="We'll never share your email with anyone else."
+        >
+          <b-form-input
+            id="email"
+            v-model="$v.form.email.$model"
+            type="email"
+            :state="validateState('email')"
+            placeholder="Enter your email"
+          ></b-form-input>
+          <b-form-invalid-feedback>
+            Please enter a valid email
+          </b-form-invalid-feedback>
+        </b-form-group>
 
-    <b-field label="Username">
-      <b-input ref="username" :value="username" maxlength="30" />
-    </b-field>
+        <b-form-group label="Your Username:" label-for="username">
+          <b-form-input
+            id="username"
+            v-model="$v.form.username.$model"
+            :state="validateState('username')"
+            placeholder="Enter your username"
+          ></b-form-input>
+          <b-form-invalid-feedback>
+            Please enter a valid username
+          </b-form-invalid-feedback>
+        </b-form-group>
 
-    <b-field label="Password">
-      <b-input
-        ref="password"
-        type="password"
-        :value="password"
-        password-reveal
-        @input="clearPasswordValidation"
-      />
-    </b-field>
+        <b-form-group label="Your Password:" label-for="password">
+          <b-form-input
+            id="password"
+            v-model="$v.form.password.$model"
+            :state="validateState('password')"
+            type="password"
+            placeholder="Enter your password"
+          ></b-form-input>
+          <b-form-invalid-feedback>
+            Please enter a valid password. It has to be at least 8 characters
+            long
+          </b-form-invalid-feedback>
+        </b-form-group>
 
-    <b-field
-      label="Repeat Password"
-      :type="pwValidation.type"
-      :message="pwValidation.message"
-    >
-      <b-input
-        ref="repeatedPassword"
-        type="password"
-        :value="repeatedPassword"
-        password-reveal
-        @input="clearPasswordValidation"
-        @blur="validate"
-      />
-    </b-field>
+        <b-form-group description="Please repeat your password">
+          <b-form-input
+            id="passwordRepeated"
+            v-model="$v.form.passwordRepeated.$model"
+            :state="validateState('passwordRepeated')"
+            type="password"
+            placeholder="Enter your password"
+          ></b-form-input>
+          <b-form-invalid-feedback>
+            Please repeat your password
+          </b-form-invalid-feedback>
+        </b-form-group>
 
-    <div class="buttons">
-      <b-button class="button" type="button" @click="back">Back</b-button>
-      <b-button
-        class="button is-primary"
-        :loading="loading"
-        @click.prevent="register"
-        >Register</b-button
-      >
-    </div>
-  </div>
+        <b-alert v-model="showError" class="mt-3" dismissible>
+          {{ errorMsg }}
+        </b-alert>
+      </b-card-body>
+      <b-card-footer>
+        <b-button type="submit" variant="primary">Register</b-button>
+        <b-button type="reset" variant="danger">Back</b-button>
+      </b-card-footer>
+    </b-card>
+  </b-form>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+import { sameAs, email, required } from 'vuelidate/lib/validators'
+import { validationMixin } from 'vuelidate'
+
 export default {
   name: 'Register',
+  mixins: [validationMixin],
   data() {
     return {
-      email: null,
-      username: null,
-      password: null,
-      repeatedPassword: null,
-      loading: false,
-      pwValidation: {
-        type: null,
-        message: null,
+      form: {
+        email: '',
+        username: '',
+        password: null,
+        passwordRepeated: null,
       },
+      showError: false,
+      errorMsg: null,
     }
   },
   methods: {
-    back() {
+    ...mapMutations({
+      commitLogin: 'user/login',
+    }),
+    onReset() {
       this.$router.go(-1)
     },
-    register() {
-      if (this.validate()) {
-        this.$buefy.toast.open('Logging in... ')
-        this.loading = true
-        // simulate network delay
-        setTimeout(() => {
-          this.loading = false
-          this.$emit('close')
-          this.commitLogin({ id: '1', name: 'MiniDigger' })
-        }, 500)
+    onSubmit() {
+      this.$v.form.$touch()
+      if (this.$v.form.$anyError) {
+        return
       }
+      this.loading = true
+      // simulate network delay
+      setTimeout(() => {
+        this.loading = false
+        this.$emit('close')
+        // TODO properly implement register
+        this.commitLogin({ id: '1', name: 'MiniDigger' })
+      }, 500)
     },
-    validate() {
-      const htmlValidated =
-        this.$refs.email.checkHtml5Validity() &&
-        this.$refs.username.checkHtml5Validity() &&
-        this.$refs.password.checkHtml5Validity() &&
-        this.$refs.repeatedPassword.checkHtml5Validity()
-      if (!htmlValidated) {
-        return false
-      }
-
-      if (this.password !== this.repeatedPassword) {
-        this.pwValidation.type = 'is-danger'
-        this.pwValidation.message = 'Password does not match!'
-        return false
-      }
-
-      return true
+    validateState(name) {
+      const { $dirty, $error } = this.$v.form[name]
+      return $dirty ? !$error : null
     },
-    clearPasswordValidation() {
-      this.pwValidation.type = null
-      this.pwValidation.message = null
+  },
+  validations: {
+    form: {
+      username: {
+        required,
+      },
+      email: {
+        required,
+        email,
+      },
+      password: {
+        required,
+      },
+      passwordRepeated: {
+        required,
+        sameAsPassword: sameAs('password'),
+      },
     },
   },
 }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.card-header,
+.card-footer {
+  background-color: unset;
+}
+</style>
