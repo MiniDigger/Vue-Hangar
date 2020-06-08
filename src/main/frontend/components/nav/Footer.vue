@@ -1,7 +1,15 @@
 <template>
-  <footer>
+  <footer class="footer">
     <div class="text-center">
-      <p>Made with <fa :icon="['fas', 'heart']" /> by these Contributors!</p>
+      <p>
+        Made with <fa :icon="['fas', 'heart']" /> by
+        <a
+          href="https://github.com/MiniDigger/Hangar/graphs/contributors"
+          target="_blank"
+        >
+          these contributors</a
+        >!
+      </p>
     </div>
   </footer>
 </template>
@@ -12,4 +20,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.footer {
+  font-size: 0.875rem;
+  background-color: #f7f7f7;
+  padding: 2rem 2rem;
+}
+</style>

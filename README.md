@@ -35,7 +35,9 @@
     <a href="https://discord.gg/sUKmcsG">
         <img alt="Website badge" src="https://img.shields.io/website?down_color=red&down_message=down&up_color=green&up_message=up&url=https%3A%2F%2Fhttp%3A%2F%2Fhangar.minidigger.me%2F">
     </a>
-    <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/minidigger/hangar">
+    <a href="https://github.com/MiniDigger/Hangar/graphs/contributors">
+        <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/minidigger/hangar">
+    </a>
 </p>
 
 ## What's this?
