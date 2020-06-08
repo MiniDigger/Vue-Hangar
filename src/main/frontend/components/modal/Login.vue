@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 import { validationMixin } from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
 
@@ -55,7 +55,7 @@ export default {
       form: {
         username: null,
         password: null,
-        rememberMe: false, // TODO support remember me
+        rememberMe: false,
       },
       errorMsg: null,
       showError: false,
@@ -66,6 +66,9 @@ export default {
     ...mapActions({
       doLogin: 'user/login',
     }),
+    ...mapMutations({
+      stayLoggedIn: 'user/stayLoggedIn',
+    }),
     login(e) {
       this.$v.form.$touch()
       e.preventDefault() // dont close
@@ -73,6 +76,7 @@ export default {
         return
       }
 
+      this.stayLoggedIn(this.form.rememberMe)
       this.loading = true
       this.doLogin({
         username: this.form.username,

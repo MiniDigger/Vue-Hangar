@@ -9,13 +9,13 @@
         <b-navbar-nav class="mr-auto">
           <b-nav-item>Forums</b-nav-item>
           <b-nav-item-dropdown text="Resources">
-            <b-dropdown-item>All Resources</b-dropdown-item>
+            <b-dropdown-item to="/resources">All Resources</b-dropdown-item>
             <b-dropdown-item>New Resources</b-dropdown-item>
-            <!-- when authed
-            <b-dropdown-item>Your Resources</b-dropdown-item>
-            <b-dropdown-item>Watched Resources</b-dropdown-item>
-            <b-dropdown-item>Watched Categories</b-dropdown-item>
-            -->
+            <template v-if="user">
+              <b-dropdown-item>Your Resources</b-dropdown-item>
+              <b-dropdown-item>Watched Resources</b-dropdown-item>
+              <b-dropdown-item>Watched Categories</b-dropdown-item>
+            </template>
           </b-nav-item-dropdown>
         </b-navbar-nav>
 
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
 import Login from '../modal/Login'
 
 export default {
@@ -73,12 +73,16 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({
-      commitLogout: 'user/logout',
+    ...mapActions({
+      doLogout: 'user/logout',
+      init: 'user/init',
     }),
     logout() {
-      this.commitLogout()
+      this.doLogout()
     },
+  },
+  mounted() {
+    this.init()
   },
 }
 </script>
