@@ -2,7 +2,7 @@
   <div class="tile is-ancestor is-vertical">
     <div class="tile is-parent is-vertical">
       <div class="tile">
-        <p class="title">{{params.id}}</p>
+        <p class="title">{{ params.id }}</p>
       </div>
     </div>
 
@@ -37,15 +37,13 @@
 
 <script>
 export default {
-  name: "index.vue",
+  name: 'IndexVue',
   computed: {
     params() {
-      return this.$route.params;
-    }
-  }
+      return this.$route.params
+    },
+  },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -4,9 +4,10 @@
       <div class="tile">
         <p class="title">Resources</p>
       </div>
-      <div class="tile" id="filter">
+      <div id="filter" class="tile">
         <b-field label="Filter by:" label-position="on-border">
           <b-taginput
+            ref="taginput"
             v-model="tags"
             :data="filteredTags"
             autocomplete
@@ -15,10 +16,11 @@
             field="user.first_name"
             icon="label"
             placeholder="Add a tag"
-            ref="taginput"
-            @typing="getFilteredTags">
+            @typing="getFilteredTags"
+          >
             <template slot-scope="props">
-              <strong>{{props.option.id}}</strong>: {{props.option.name}}
+              <strong>{{ props.option.id }}</strong
+              >: {{ props.option.name }}
             </template>
             <template slot="empty">
               There are no items
@@ -31,8 +33,9 @@
                 :tabstop="false"
                 ellipsis
                 closable
-                @close="$refs.taginput.removeTag(index, $event)">
-                {{tag.name}}
+                @close="$refs.taginput.removeTag(index, $event)"
+              >
+                {{ tag.name }}
               </b-tag>
             </template>
           </b-taginput>
@@ -67,43 +70,40 @@
   </div>
 </template>
 <script>
-
 import ResourceList from '~/components/ResourceList'
 
 export default {
   name: 'Resources',
 
   components: {
-    ResourceList
+    ResourceList,
   },
   data() {
     return {
       data: [
-        { id: 1, name: "Test1" },
-        { id: 2, name: "Test2" },
-        { id: 3, name: "Test3" },
+        { id: 1, name: 'Test1' },
+        { id: 2, name: 'Test2' },
+        { id: 3, name: 'Test3' },
       ],
       filteredTags: this.data,
-      tags: []
+      tags: [],
     }
   },
   methods: {
     getFilteredTags(text) {
       this.filteredTags = this.data.filter((option) => {
-        return option.name
-          .toLowerCase()
-          .indexOf(text.toLowerCase()) >= 0
+        return option.name.toLowerCase().includes(text.toLowerCase())
       })
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style scoped>
-  .title {
-    margin-bottom: 1%;
-  }
-  #filter {
-    margin-bottom: 1%;
-  }
+.title {
+  margin-bottom: 1%;
+}
+#filter {
+  margin-bottom: 1%;
+}
 </style>
