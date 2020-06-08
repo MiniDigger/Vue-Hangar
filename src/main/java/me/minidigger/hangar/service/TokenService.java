@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -35,11 +36,12 @@ public class TokenService {
         return getVerifier().verify(token);
     }
 
-    public String expiring(UUID id) {
+    public String expiring(UUID id, List<String> roles) {
         return JWT.create()
                 .withIssuer(issuer)
                 .withExpiresAt(new Date(Instant.now().plusSeconds(expiry).toEpochMilli()))
                 .withSubject(id.toString())
+                .withClaim("roles", roles)
                 .sign(getAlgo());
     }
 

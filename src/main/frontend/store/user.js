@@ -1,7 +1,10 @@
+import jwt from 'jsonwebtoken'
+
 export const state = () => ({
   user: null,
   token: null,
   stayLoggedIn: false,
+  decodedToken: null,
 })
 
 export const mutations = {
@@ -14,6 +17,8 @@ export const mutations = {
   },
   token(state, token) {
     state.token = token
+    // TODO properly sign and validate tokens
+    state.decodedToken = jwt.decode(token)
   },
   stayLoggedIn(state, val) {
     state.stayLoggedIn = val
@@ -29,7 +34,6 @@ export const actions = {
       token = sessionStorage.getItem('user')
     }
     if (token) {
-      // TODO properly validate token
       commit('token', token)
       dispatch('fetchUser')
     }

@@ -10,7 +10,9 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
+import me.minidigger.hangar.model.Role;
 import me.minidigger.hangar.model.SpringUser;
 import me.minidigger.hangar.model.User;
 import me.minidigger.hangar.repository.UserRepository;
@@ -21,14 +23,16 @@ public class UserService {
     private final UserRepository repository;
     private final TokenService tokenService;
     private final PasswordEncoder passwordEncoder;
+    private final RoleService roleService;
 
     private Set<UUID> loggedOut = new HashSet<>();
 
     @Autowired
-    public UserService(UserRepository repository, TokenService tokenService, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository repository, TokenService tokenService, PasswordEncoder passwordEncoder, RoleService roleService) {
         this.repository = repository;
         this.tokenService = tokenService;
         this.passwordEncoder = passwordEncoder;
+        this.roleService = roleService;
     }
 
     public Iterable<User> getAllUsers() {
@@ -58,12 +62,25 @@ public class UserService {
         }
     }
 
+    public Optional<User> grantRole(UUID id, String roleName) {
+        Optional<User> user = getUserById(id);
+        if (user.isPresent()) {
+            Optional<Role> role = roleService.getRoleByName(roleName);
+            if (role.isEmpty()) {
+                role = Optional.of(roleService.addRole(new Role(roleName)));
+            }
+
+            user.get().getRoles().add(role.get());
+        }
+        return user;
+    }
+
     public Optional<String> login(String username, String password) {
         Optional<User> optUser = repository
                 .findByUsername(username);
         Optional<String> token = optUser
                 .filter(user -> passwordEncoder.matches(password, user.getPassword()))
-                .map(user -> tokenService.expiring(user.getId()));
+                .map(user -> tokenService.expiring(user.getId(), user.getRoles().stream().map(Role::getName).collect(Collectors.toList())));
 
         token.ifPresent((s) -> loggedOut.remove(optUser.get().getId()));
 

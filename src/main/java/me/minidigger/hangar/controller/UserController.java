@@ -42,6 +42,12 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+    @GetMapping("/grantRole/{id}/{role}")
+    @RequiresLogin
+    public Optional<User> grantRole(@PathVariable UUID id, @PathVariable String role) {
+        return userService.grantRole(id, role);
+    }
+
     @DeleteMapping("/{id}")
     @RequiresLogin
     public void deleteUser(@PathVariable UUID id) {
