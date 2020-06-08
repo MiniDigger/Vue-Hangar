@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-jumbotron
-      header="Hanger"
+      header="Hangar"
       lead="Launch your Paper Planes/Plugins from this awesome hangar!"
     >
       <p>For more information visit website</p>
