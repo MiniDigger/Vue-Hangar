@@ -1,5 +1,13 @@
 <template>
   <div>
+    <b-jumbotron
+      header="Hanger"
+      lead="Launch your Paper Planes/Plugins from this awesome hangar!"
+    >
+      <p>For more information visit website</p>
+      <b-button variant="primary" href="#">More Info</b-button>
+    </b-jumbotron>
+
     <section>
       <h1>Featured Resources</h1>
       <b-row>
@@ -86,5 +94,8 @@ export default {
 <style lang="scss" scoped>
 .featured-resource {
   margin-bottom: 15px;
+}
+.jumbotron {
+  background-color: unset;
 }
 </style>
