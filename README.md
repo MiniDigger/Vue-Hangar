@@ -46,7 +46,7 @@ The goal is to learn from the limitations of other places and provide a good exp
 ## Status
 
 Currently, there is not much here yet. You may leave ideas [here](https://github.com/MiniDigger/Hangar/issues/1).  
-If you plan on helping out building this, hit me up on discord: MiniDigger#3086 or just ping me on Papers discord: https://discord.gg/papermc
+If you plan on helping out building this, hit me up on discord: MiniDigger#3086 or just ping me on Papers discord: https://discord.gg/papermc 
 
 ## Licence
 
