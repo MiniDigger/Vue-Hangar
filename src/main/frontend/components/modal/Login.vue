@@ -35,12 +35,7 @@
 
       <b-form-checkbox v-model="form.rememberMe">Remember me</b-form-checkbox>
 
-      <b-alert
-        v-model="showError"
-        class="mt-3"
-        dismissible
-        @dismissed="dismissed"
-      >
+      <b-alert v-model="showError" class="mt-3" dismissible>
         {{ errorMsg }}
       </b-alert>
     </b-overlay>
