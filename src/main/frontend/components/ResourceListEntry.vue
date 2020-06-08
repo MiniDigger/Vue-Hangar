@@ -4,7 +4,8 @@
       <nuxt-link :to="'/resources/' + resource.id">
         {{resource.name}}
       </nuxt-link>
-    </p>
+    </p> 
+    v{{resource.version}} by {{resource.authors}}
   </div>
 </template>
 

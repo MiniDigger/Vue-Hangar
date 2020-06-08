@@ -3,6 +3,7 @@ target/
 *.iml
 .mvn
 run
-.project
-.settings/
 .classpath
+.project
+*.prefs
+.settings/

@@ -4,7 +4,7 @@
       <nuxt-link class="link is-info" to="/">Home</nuxt-link>
     </p>
     <p class="level-item has-text-centered">
-      <a class="link is-info">Forums</a>
+      <a class="link is-info" href="https://papermc.io/forums/">Forums</a>
     </p>
     <p class="level-item has-text-centered">
       <nuxt-link class="link is-info" to="/resources">Resources</nuxt-link>
@@ -13,10 +13,13 @@
       <a class="link is-info">Your Resources</a>
     </p>
     <p class="level-item has-text-centered">
-      <a class="link is-info">New Resource...</a>
+      <a class="link is-info">New Resource</a>
     </p>
     <p class="level-item has-text-centered">
       <a class="link is-info">Watched Resources</a>
+    </p>
+    <p class="level-item has-text-centered">
+      <a class="link is-info">Watched Categories</a>
     </p>
     <div class="level-item">
       <b-field>
@@ -44,6 +47,7 @@ export default {
 
 <style scoped>
 #subnav {
+  height: 7%;
   background-color: #47494E;
   color: white;
   padding: 5px 0 5px 0;
