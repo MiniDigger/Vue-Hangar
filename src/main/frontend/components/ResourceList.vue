@@ -1,23 +1,18 @@
 <template>
-  <div class="tile is-parent is-vertical">
+  <div>
     <ResourceListEntry
       v-for="resource in currentResources"
       :key="resource.id"
       :resource="resource"
     />
 
+    <p class="mt-3">Current Page: {{ currentPage }}</p>
     <b-pagination
-      :total="total"
-      :current.sync="current"
+      v-model="currentPage"
+      :total-rows="rows"
       :per-page="perPage"
-      order="is-centered"
-      aria-next-label="Next page"
-      aria-previous-label="Previous page"
-      aria-page-label="Page"
-      aria-current-label="Current page"
-      @change="switchPage"
-    >
-    </b-pagination>
+      aria-controls="my-table"
+    ></b-pagination>
   </div>
 </template>
 
@@ -32,7 +27,7 @@ export default {
   data() {
     return {
       total: 200,
-      current: 10,
+      currentPage: 10,
       perPage: 10,
     }
   },

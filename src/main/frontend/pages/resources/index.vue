@@ -1,73 +1,60 @@
 <template>
-  <div class="tile is-ancestor is-vertical">
-    <div class="tile is-parent is-vertical">
-      <div class="tile">
-        <p class="title">Resources</p>
-      </div>
-      <div id="filter" class="tile">
-        <b-field label="Filter by:" label-position="on-border">
-          <b-taginput
-            ref="taginput"
-            v-model="tags"
-            :data="filteredTags"
-            autocomplete
-            :allow-new="false"
-            :open-on-focus="true"
-            field="user.first_name"
-            icon="label"
-            placeholder="Add a tag"
-            @typing="getFilteredTags"
-          >
-            <template slot-scope="props">
-              <strong>{{ props.option.id }}</strong
-              >: {{ props.option.name }}
-            </template>
-            <template slot="empty">
-              There are no items
-            </template>
-            <template slot="selected" slot-scope="props">
-              <b-tag
-                v-for="(tag, index) in props.tags"
-                :key="index"
-                rounded
-                :tabstop="false"
-                ellipsis
-                closable
-                @close="$refs.taginput.removeTag(index, $event)"
-              >
-                {{ tag.name }}
-              </b-tag>
-            </template>
-          </b-taginput>
-        </b-field>
-      </div>
-      <div class="tile">
-        <nuxt-link :to="'/resources/new'">
-          <b-button class="button is-primary">New Resource</b-button>
-        </nuxt-link>
-      </div>
-    </div>
+  <b-container>
+    <b-jumbotron
+      header="Resources"
+      lead="Launch your Paper Planes (plugins)!"
+    ></b-jumbotron>
 
-    <div class="tile is-parent">
-      <div class="tile is-parent">
-        <div class="tile is-child box">
-          <ResourceList />
-        </div>
-      </div>
+    <nuxt-link :to="'/resources/new'">
+      <b-button class="button is-primary">New Resource</b-button>
+    </nuxt-link>
 
-      <div class="tile is-4 is-vertical is-parent">
-        <div class="tile is-child box">
-          <p class="title">Categories</p>
-        </div>
-        <div class="tile is-child box">
-          <p class="title">Top Resources</p>
-        </div>
-        <div class="tile is-child box">
-          <p class="title">Most Resources</p>
-        </div>
-      </div>
-    </div>
-  </div>
+    <b-form-tags
+      v-model="value"
+      input-id="tags-basic"
+      class="mb-2"
+    ></b-form-tags>
+
+    <ResourceList />
+
+    <!-- <div id="filter" class="tile">
+      <b-field label="Filter by:" label-position="on-border">
+        <b-taginput
+          ref="taginput"
+          v-model="tags"
+          :data="filteredTags"
+          autocomplete
+          :allow-new="false"
+          :open-on-focus="true"
+          field="user.first_name"
+          icon="label"
+          placeholder="Add a tag"
+          @typing="getFilteredTags"
+        >
+          <template slot-scope="props">
+            <strong>{{ props.option.id }}</strong
+            >: {{ props.option.name }}
+          </template>
+          <template slot="empty">
+            There are no items
+          </template>
+          <template slot="selected" slot-scope="props">
+            <b-tag
+              v-for="(tag, index) in props.tags"
+              :key="index"
+              rounded
+              :tabstop="false"
+              ellipsis
+              closable
+              @close="$refs.taginput.removeTag(index, $event)"
+            >
+              {{ tag.name }}
+            </b-tag>
+          </template>
+        </b-taginput>
+      </b-field>
+    </div> -->
+  </b-container>
 </template>
 <script>
 import ResourceList from '~/components/ResourceList'
@@ -105,5 +92,12 @@ export default {
 }
 #filter {
   margin-bottom: 1%;
+}
+</style>
+
+<style lang="scss" scoped>
+.jumbotron {
+  background-color: unset;
+  padding: 0;
 }
 </style>

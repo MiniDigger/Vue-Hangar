@@ -7,14 +7,19 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="mr-auto">
-          <b-nav-item>Forums</b-nav-item>
+          <b-nav-item to="/news">News</b-nav-item>
+          <b-nav-item href="https://papermc.io/forums/">Forums</b-nav-item>
           <b-nav-item-dropdown text="Resources">
             <b-dropdown-item to="/resources">All Resources</b-dropdown-item>
-            <b-dropdown-item>New Resources</b-dropdown-item>
+            <b-dropdown-item to="/resources">Top Resources</b-dropdown-item>
+            <b-dropdown-item to="/resources">New Resources</b-dropdown-item>
             <template v-if="user">
               <b-dropdown-item>Your Resources</b-dropdown-item>
               <b-dropdown-item>Watched Resources</b-dropdown-item>
               <b-dropdown-item>Watched Categories</b-dropdown-item>
+              <b-dropdown-item to="/resources/new"
+                >New Resource</b-dropdown-item
+              >
             </template>
           </b-nav-item-dropdown>
           <b-nav-item to="/test">Test</b-nav-item>
@@ -22,7 +27,7 @@
 
         <b-navbar-nav class="mx-auto">
           <b-nav-form class="search">
-            <b-form-input size="sm" placeholder="Search for a resource..." />
+            <b-form-input size="sm" placeholder="Search.." />
           </b-nav-form>
         </b-navbar-nav>
 
