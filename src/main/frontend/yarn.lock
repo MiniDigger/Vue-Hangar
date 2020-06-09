@@ -1173,14 +1173,14 @@
     mustache "^2.3.0"
     stack-trace "0.0.10"
 
-"@toast-ui/editor-plugin-code-syntax-highlight@^1.0.0":
+"@toast-ui/editor-plugin-code-syntax-highlight@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@toast-ui/editor-plugin-code-syntax-highlight/-/editor-plugin-code-syntax-highlight-1.0.0.tgz#61898e4f721c63bb28f59e470804b8e62ef9cbe4"
   integrity sha512-GFC+aAMfEUALw38vo3daOHWF9IO6X7lByXk0WZ6Kr6Bgp8JwsrVwMYPzWReDK+vQqwO7EVmMDltJKYr1Mjo6kA==
   dependencies:
     highlight.js "^9.18.1"
 
-"@toast-ui/editor-plugin-color-syntax@^1.0.0":
+"@toast-ui/editor-plugin-color-syntax@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@toast-ui/editor-plugin-color-syntax/-/editor-plugin-color-syntax-1.0.0.tgz#cd81221ade41901567dea55726c1bff20292396a"
   integrity sha512-iUYF6Ygw8733OQ7RPBqAIkrxmf0lHaBixrnlzYR2csFsdKjtsLFQ08HZ1LMNRLBzygC7LkZ9yrjBsXwi1enBzg==
@@ -1195,7 +1195,7 @@
     "@types/codemirror" "0.0.71"
     codemirror "^5.48.4"
 
-"@toast-ui/vue-editor@^2.1.2":
+"@toast-ui/vue-editor@2.1.2":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@toast-ui/vue-editor/-/vue-editor-2.1.2.tgz#a790e69fcf7fb426e6b8ea190733477c3cc756aa"
   integrity sha512-RK01W6D8FqtNq4MjWsXk6KRzOU/vL6mpiADAnH5l/lFK4G6UQJhLKsMRfmxIqCH+ivm8VtQzGdd9obUfD+XbCw==
