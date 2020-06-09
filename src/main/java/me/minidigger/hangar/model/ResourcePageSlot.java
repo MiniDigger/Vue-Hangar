@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
-public class ResourcePageSlot { // TODO implement this
+public class ResourcePageSlot {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -20,7 +20,9 @@ public class ResourcePageSlot { // TODO implement this
     @Type(type = "uuid-char")
     private UUID id;
 
-    private String url;
+    private String name;
+
+    // TODO prolly support restrictions?
 
     public UUID getId() {
         return id;
@@ -28,13 +30,5 @@ public class ResourcePageSlot { // TODO implement this
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 }

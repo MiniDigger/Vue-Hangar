@@ -32,6 +32,8 @@ public class Resource {
     private List<ResourceVersion> versions;
     @OneToMany
     private List<User> stars;
+    @OneToMany
+    private Map<ResourcePageSlot, Content> content;
 
     protected Resource() {
         // JPA
@@ -99,6 +101,14 @@ public class Resource {
 
     public void setStars(List<User> stars) {
         this.stars = stars;
+    }
+
+    public Map<ResourcePageSlot, Content> getContent() {
+        return content;
+    }
+
+    public void setContent(Map<ResourcePageSlot, Content> content) {
+        this.content = content;
     }
 
     @Override

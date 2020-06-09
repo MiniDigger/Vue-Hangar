@@ -17,6 +17,7 @@
               <b-dropdown-item>Watched Categories</b-dropdown-item>
             </template>
           </b-nav-item-dropdown>
+          <b-nav-item to="/test">Test</b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav class="mx-auto">
@@ -72,6 +73,9 @@ export default {
       return this.$store.state.user.user
     },
   },
+  mounted() {
+    this.init()
+  },
   methods: {
     ...mapActions({
       doLogout: 'user/logout',
@@ -80,9 +84,6 @@ export default {
     logout() {
       this.doLogout()
     },
-  },
-  mounted() {
-    this.init()
   },
 }
 </script>
