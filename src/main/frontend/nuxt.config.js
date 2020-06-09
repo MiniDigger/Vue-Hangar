@@ -1,4 +1,3 @@
-
 export default {
   mode: 'universal',
   /*
@@ -32,13 +31,16 @@ export default {
   ** Global CSS
   */
   css: [
-    '~/assets/style/global.scss'
+    '~/assets/style/global.scss',
+    "tui-editor/dist/tui-editor.css",
+    "tui-editor/dist/tui-editor-contents.css",
+    "codemirror/lib/codemirror.css"
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['~/plugins/vuelidate'],
+  plugins: ['~/plugins/vuelidate', "~plugins/tui-editor.client"],
   /*
   ** Nuxt.js dev-modules
   */
@@ -64,7 +66,7 @@ export default {
           icons: ['fas']
         }
       ]
-    }]
+    }],
   ],
   /*
    ** Bootstrap Vue configuration
@@ -90,7 +92,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
       // apply development sourcemap for debug
       if (ctx.isDev) {
         config.devtool = ctx.isClient ? 'eval-source-map' : 'inline-source-map'
