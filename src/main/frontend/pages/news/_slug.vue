@@ -28,15 +28,15 @@ export default {
       return this.$route.params.slug
     },
   },
-  methods: {
-    ...mapActions({
-      loadBySlug: 'announcement/loadBySlug',
-    }),
-  },
   mounted() {
     if (!this.announcement) {
       this.loadBySlug(this.slug)
     }
+  },
+  methods: {
+    ...mapActions({
+      loadBySlug: 'announcement/loadBySlug',
+    }),
   },
 }
 </script>

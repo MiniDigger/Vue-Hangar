@@ -64,8 +64,7 @@ export default {
   },
   methods: {
     change() {
-      const markdown = this.$refs.editor.invoke('getMarkdown')
-      console.log('markdown now: ' + markdown)
+      // const markdown = this.$refs.editor.invoke('getMarkdown')
     },
   },
 }

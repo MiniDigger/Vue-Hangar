@@ -30,13 +30,13 @@ export default {
       return this.$store.state.announcement.announcements
     },
   },
+  mounted() {
+    this.load()
+  },
   methods: {
     ...mapActions({
       load: 'announcement/load',
     }),
-  },
-  mounted() {
-    this.load()
   },
 }
 </script>

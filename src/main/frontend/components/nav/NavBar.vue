@@ -49,6 +49,8 @@
               {{ user.username }}
             </template>
             <b-dropdown-item href="#">Settings</b-dropdown-item>
+            <!-- todo only if has role admin -->
+            <b-dropdown-item to="/admin">Admin</b-dropdown-item>
             <b-dropdown-item @click="logout">Log out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
