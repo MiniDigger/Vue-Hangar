@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Announcement from '../../components/Announcement'
 
 export default {
@@ -24,17 +25,18 @@ export default {
   components: {
     Announcement,
   },
-  data() {
-    return {
-      // TODO get from server
-      announcements: [
-        {
-          headline: 'Welcome to Hangar!',
-          content: 'This is the new Hangar site for Paper plugins!',
-          slug: 'welcome',
-        },
-      ],
-    }
+  computed: {
+    announcements() {
+      return this.$store.state.announcement.announcements
+    },
+  },
+  methods: {
+    ...mapActions({
+      load: 'announcement/load',
+    }),
+  },
+  mounted() {
+    this.load()
   },
 }
 </script>

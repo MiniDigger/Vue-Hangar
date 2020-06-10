@@ -20,7 +20,7 @@ public class AnnouncementService {
     }
 
     public Iterable<Announcement> getAllAnnouncements() {
-        return this.repository.findAll();
+        return this.repository.findAllByOrderByPublishedOnDesc();
     }
 
     public Optional<Announcement> getAnnouncementById(UUID id) {

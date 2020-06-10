@@ -14,4 +14,6 @@ import me.minidigger.hangar.model.Announcement;
 public interface AnnouncementRepository extends CrudRepository<Announcement, UUID> {
 
     Optional<Announcement> findBySlug(String slug);
+
+    Iterable<Announcement> findAllByOrderByPublishedOnDesc();
 }

@@ -5,8 +5,11 @@ import com.google.common.base.Objects;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
+import java.util.Date;
 import java.util.StringJoiner;
 import java.util.UUID;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,9 +27,11 @@ public class Announcement {
     @Type(type = "uuid-char")
     private UUID id;
 
+    private Date publishedOn;
     private String headline;
+    @Column(unique = true)
     private String slug;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Content content;
 
     public UUID getId() {
@@ -55,6 +60,14 @@ public class Announcement {
 
     public void setContent(Content content) {
         this.content = content;
+    }
+
+    public Date getPublishedOn() {
+        return publishedOn;
+    }
+
+    public void setPublishedOn(Date publishedOn) {
+        this.publishedOn = publishedOn;
     }
 
     @Override

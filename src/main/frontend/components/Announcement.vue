@@ -1,6 +1,6 @@
 <template>
   <b-jumbotron :header="headline">
-    <p><Render :content="content" /></p>
+    <p><Render v-if="content" :content="content.content" /></p>
     <b-button v-if="!showFull" variant="primary" :to="'/news/' + slug"
       >More Info</b-button
     >
@@ -10,7 +10,7 @@
 <script>
 import Render from './editor/Render'
 export default {
-  name: 'Index',
+  name: 'Announcement',
   components: { Render },
   props: {
     headline: {
@@ -22,7 +22,7 @@ export default {
       required: true,
     },
     content: {
-      type: String,
+      type: Object,
       required: true,
     },
     showFull: {
