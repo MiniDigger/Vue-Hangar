@@ -32,9 +32,9 @@ export default {
   */
   css: [
     '~/assets/style/global.scss',
-    "tui-editor/dist/tui-editor.css",
-    "tui-editor/dist/tui-editor-contents.css",
-    "codemirror/lib/codemirror.css"
+    "~/node_modules/@toast-ui/editor/dist/toastui-editor.css",
+    "~/node_modules/@toast-ui/editor/dist/toastui-editor-viewer.css",
+    "~/node_modules/codemirror/lib/codemirror.css"
   ],
 
   /*
