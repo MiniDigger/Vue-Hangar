@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="text-center">
       <p>
-        Made with <fa :icon="['fas', 'heart']" /> by
+        Made with <fa :icon="['fas', 'beer']" /> by
         <a
           href="https://github.com/MiniDigger/Hangar/graphs/contributors"
           target="_blank"
