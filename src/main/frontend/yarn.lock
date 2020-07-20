@@ -1180,10 +1180,10 @@
   dependencies:
     highlight.js "^9.18.1"
 
-"@toast-ui/editor-plugin-color-syntax@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@toast-ui/editor-plugin-color-syntax/-/editor-plugin-color-syntax-1.0.0.tgz#cd81221ade41901567dea55726c1bff20292396a"
-  integrity sha512-iUYF6Ygw8733OQ7RPBqAIkrxmf0lHaBixrnlzYR2csFsdKjtsLFQ08HZ1LMNRLBzygC7LkZ9yrjBsXwi1enBzg==
+"@toast-ui/editor-plugin-color-syntax@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@toast-ui/editor-plugin-color-syntax/-/editor-plugin-color-syntax-1.0.1.tgz#d88564310d549b822316c74128c8249404bad357"
+  integrity sha512-8ZnVFmgKGArthwLpNrnax5xx6q+WRlIUXUAev8rQEVKyXKFuK+U/YySixR8FT516779AUObQ2Fpt4KlV1bzUbA==
   dependencies:
     tui-color-picker "^2.2.6"
 
