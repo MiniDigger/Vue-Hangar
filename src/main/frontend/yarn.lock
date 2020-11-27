@@ -1187,20 +1187,20 @@
   dependencies:
     tui-color-picker "^2.2.6"
 
-"@toast-ui/editor@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@toast-ui/editor/-/editor-2.1.2.tgz#0472431bd039ae70882d77910e83f0ad222d0b1c"
-  integrity sha512-yoWRVyp2m1dODH+bmzJaILUgl2L57GCQJ8c8+XRgJMwfxb/TFz5U+oT8JGAU5VwozIzKF0SyVMs8AEePwwhIIA==
+"@toast-ui/editor@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@toast-ui/editor/-/editor-2.5.1.tgz#42671c52ca4b97c84f684d09c2966711b36f41a7"
+  integrity sha512-LVNo/YaNItUemEaRFvFAVn7w/0U7yxEheMdn6GEGxqo727rRZD1MH7OTDVq6NeQ+P93VwFpa0i9GGRBhNNEbPQ==
   dependencies:
     "@types/codemirror" "0.0.71"
     codemirror "^5.48.4"
 
-"@toast-ui/vue-editor@2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@toast-ui/vue-editor/-/vue-editor-2.1.2.tgz#a790e69fcf7fb426e6b8ea190733477c3cc756aa"
-  integrity sha512-RK01W6D8FqtNq4MjWsXk6KRzOU/vL6mpiADAnH5l/lFK4G6UQJhLKsMRfmxIqCH+ivm8VtQzGdd9obUfD+XbCw==
+"@toast-ui/vue-editor@2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@toast-ui/vue-editor/-/vue-editor-2.5.1.tgz#0a221d74d5305c8ca20cb11d9eb8ff9206455cfc"
+  integrity sha512-vD0FowDrlMPfR4m1Sd91YthkMLul4lTdiwl1QcDYX+JhIzxXMuQhFABezny/TvKJLxkCkHGpt7XsTjXvMUa04w==
   dependencies:
-    "@toast-ui/editor" "^2.1.2"
+    "@toast-ui/editor" "^2.5.1"
 
 "@types/codemirror@0.0.71":
   version "0.0.71"
